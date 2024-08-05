@@ -29,7 +29,10 @@ const Navbar = () => {
     <>
       <nav className="bg-gray-800 p-4">
         <div className="container mx-auto flex justify-between items-center relative">
-          <div className="text-white text-2xl">University Reviews</div>
+          <a href="/">
+            <div className="text-white text-2xl">University Reviews</div>
+          </a>
+
           <div className="flex space-x-4 relative">
             {!isLoggedIn ? (
               <>

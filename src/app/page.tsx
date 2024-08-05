@@ -8,7 +8,6 @@ import useAuth from "./utils/useAuth";
 import GenerateLink from "./component/genlink";
 import { useEffect, useState } from "react";
 
- 
 export interface IUniversity {
   _id: string;
   university_id: string;
@@ -32,7 +31,6 @@ export default function Home() {
         setUniversities(data);
       } catch (error: any) {
         setError(error.message);
-        
       } finally {
         setLoading(false);
       }
@@ -43,12 +41,13 @@ export default function Home() {
   return (
     <main className="  min-h-screen     ">
       <div className="  p-24">
-    
         <div>ROLE: {role}</div>
-        <GenerateLink universities={universities} loading={loading} />
+        <div className="mx-auto h-[20vh]">
+          <GenerateLink universities={universities} loading={loading} />
+        </div>
       </div>
       <div className="h-[60vh]   p-4 bg-red-500 mx-auto ">
-        <UniversitiesPage universities={universities} loading={loading}/>
+        <UniversitiesPage universities={universities} loading={loading} />
       </div>
     </main>
   );

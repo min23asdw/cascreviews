@@ -9,7 +9,6 @@ const ReviewWithToken = () => {
   const [universityName, setUniversityName] = useState("");
   const [universityId, setUniversityId] = useState("");
 
-
   const router = useRouter();
   const host = process.env.BE;
   useEffect(() => {
@@ -17,22 +16,17 @@ const ReviewWithToken = () => {
 
     const fetchReviews = async () => {
       try {
-        const response = await fetch(
-          `${host}/university/${token}`
-        );
+        const response = await fetch(`${host}/university/${token}`);
         if (!response.ok) {
-
           router.push("/");
         }
         const data = await response.json();
 
-
-        console.log(data)
-        setUniversityName(data.university.university_name)
+        console.log(data);
+        setUniversityName(data.university.university_name);
         setUniversityId(data.university.university_id);
       } catch (error: any) {
         console.log(error);
-
       }
     };
 
@@ -54,25 +48,33 @@ const ReviewWithToken = () => {
       });
 
       const data = await response.json();
-      console.log(data)
-    
+      console.log(data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
   return (
-    <div className="container mx-auto p-4"> 
-      <h1 className="text-xl font-bold mb-4">Submit Review: {universityName}</h1>
-      <h4 className="text-xl font-bold mb-4">id: {universityId}</h4>
+    <div className="container mx-auto p-12 mt-12">
+      <h1 className="text-xl font-bold mb-4">
+        Submit Review: {universityName}
+      </h1>
+      <h4 className="text-md font-bold mb-4">id: {universityId}</h4>
 
       <div className="mb-4">
-        <label className="block mb-2">Description:</label>
-        <textarea
-          value={desc}
-          onChange={(e) => setDesc(e.target.value)}
-          className="border p-2 w-full"
-        />
+        <div>
+          <label className="block mb-2">Description:</label>
+
+          <textarea
+            value={desc}
+            onChange={(e) => setDesc(e.target.value)}
+            className="border p-2 w-full h-[30vh]"
+            maxLength={1000}
+          />
+          <div className="text-right text-gray-500">
+            {desc.length}/1000 characters
+          </div>
+        </div>
       </div>
       <div className="mb-4">
         <label className="block mb-2">Stars:</label>
@@ -86,13 +88,14 @@ const ReviewWithToken = () => {
         />
       </div>
 
-      <button
-        onClick={handleSubmitReview}
-        className="bg-blue-500 text-white p-2 rounded"
-      >
-        Submit Review
-      </button>
-       
+      <div className="flex flex-row justify-end">
+        <button
+          onClick={handleSubmitReview}
+          className="bg-blue-500 text-white p-2 rounded"
+        >
+          Submit Review
+        </button>
+      </div>
     </div>
   );
 };

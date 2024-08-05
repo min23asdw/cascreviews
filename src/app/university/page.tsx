@@ -2,16 +2,21 @@
 import React, { useEffect, useState } from "react";
 import { IUniversity } from "../page";
 
- 
 interface Props {
-  universities: IUniversity[] ;
-  loading:boolean
+  universities: IUniversity[];
+  loading: boolean;
 }
-function UniversitiesPage  (props: Props) {
- 
-  const { universities , loading } = props;
+function UniversitiesPage(props: Props) {
+  const { universities, loading } = props;
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <div className="mx-auto   ">
+        <div>
+          <p>Loading...</p>
+        </div>
+      </div>
+    );
   // if (error) return <p>Error: {error}</p>;
 
   return (
@@ -45,6 +50,6 @@ function UniversitiesPage  (props: Props) {
       )}
     </div>
   );
-};
+}
 
 export default UniversitiesPage;
