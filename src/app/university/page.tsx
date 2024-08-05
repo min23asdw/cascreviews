@@ -12,10 +12,12 @@ const UniversitiesPage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  
+  const host = process.env.BE;
   useEffect(() => {
     const fetchUniversities = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/universities");
+        const response = await fetch(`${host}/universities`);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -35,16 +37,19 @@ const UniversitiesPage: React.FC = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
+    <div className="mt-10  ">
       <h1>Universities</h1>
       {universities.length === 0 ? (
         <p>No universities found.</p>
       ) : (
-        <ul className="space-y-4">
+       
+          <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+
+       
           {universities.map((university) => (
-            <li
+            <div
               key={university._id}
-              className="bg-white p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-shadow"
+              className=" bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105"
             >
               <a href={`/reviews/${university.university_id}`}>
                 <h2 className="text-xl font-semibold text-gray-800 mb-2">
@@ -52,9 +57,10 @@ const UniversitiesPage: React.FC = () => {
                 </h2>
                 <p className="text-gray-600">ID: {university.university_id}</p>
               </a>
-            </li>
+            </div>
           ))}
-        </ul>
+     
+        </div>
       )}
     </div>
   );
