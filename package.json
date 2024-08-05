@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.10.8",
+    "aws4": "^1.13.0",
+    "graphql-ws": "^5.16.0",
     "@emotion/cache": "^11.13.1",
     "@mui/material-nextjs": "^5.16.6",
     "@mui/system": "^5.16.6",

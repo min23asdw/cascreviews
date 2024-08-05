@@ -1,5 +1,6 @@
 import { Box } from "@mui/system";
 import Image from "next/image";
+import UniversitiesPage from "./university/page";
 
 export default function Home() {
   return (
@@ -24,6 +25,8 @@ export default function Home() {
           <div className=" bg-slate-400">
             tailwindcss <div className=" text-5xl">work</div>
           </div>
+
+          <UniversitiesPage/>
         </Box>
       </div>
     </main>
