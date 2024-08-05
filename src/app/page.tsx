@@ -42,7 +42,7 @@ export default function Home() {
     <main className="  min-h-screen     ">
       <div className="  p-24">
         <div>ROLE: {role}</div>
-        <div className="mx-auto h-[20vh]">
+        <div className="mx-auto h-[40vh]">
           <GenerateLink universities={universities} loading={loading} />
         </div>
       </div>
