@@ -21,7 +21,6 @@ const LoginSection: React.FC = () => {
 
   return (
     <div>
-      <h1>Login</h1>
       <form onSubmit={handleLogin}>
         <input
           type="text"
@@ -37,7 +36,7 @@ const LoginSection: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Login</button>
+        <button type="submit" className='bg-red'>Login</button>
       </form>
       {message && <p>{message}</p>}
     </div>

@@ -32,6 +32,7 @@ const Reviews = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
+        console.log(data.length)
         setReviews(data);
       } catch (error: any) {
         setError(error.message);

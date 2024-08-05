@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 // import { ThemeProvider } from '@mui/material'
-import { ThemeProvider } from '@mui/system';
+import { ThemeProvider } from "@mui/system";
 import theme from "./theme";
+import Navbar from "./component/navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,12 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-                <AppRouterCacheProvider>
-                <ThemeProvider theme={theme}>
-                  {children}
-                  </ThemeProvider>
-                </AppRouterCacheProvider>
-                </body>
+        <AppRouterCacheProvider>
+          <ThemeProvider theme={theme}>
+            <Navbar />
+            {children}
+          </ThemeProvider>
+        </AppRouterCacheProvider>
+      </body>
     </html>
   );
 }

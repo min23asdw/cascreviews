@@ -21,7 +21,6 @@ const RegisterSection: React.FC = () => {
 
   return (
     <div>
-      <h1>Register</h1>
       <form onSubmit={handleRegister}>
         <input
           type="text"

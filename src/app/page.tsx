@@ -10,19 +10,14 @@ import GenerateLink from "./component/genlink";
 export default function Home() {
   const role = useAuth.getRole();
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className=" ">
-        <div className="flex flex-col gap-4">
-          <LoginSection />
-          <RegisterSection />
-        </div>
-        {/* <button onClick={()=>{test}}>test</button> */}
+    <main className="  min-h-screen     ">
+      <div className="  p-24">
+    
         <div>ROLE: {role}</div>
-        <GenerateLink/>
-        <div className="h-[50vh] flex items-end">
+        <GenerateLink />
+      </div>
+      <div className="h-[60vh]   p-4 bg-red-500 mx-auto ">
         <UniversitiesPage />
-        </div>
-         
       </div>
     </main>
   );

@@ -1,17 +1,16 @@
 "use client";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-
+import { useRouter } from "next/navigation";
 const ReviewWithToken = () => {
   const { token } = useParams<{ token: string }>();
   const [desc, setDesc] = useState("");
   const [star, setStar] = useState(0);
   const [universityName, setUniversityName] = useState("");
   const [universityId, setUniversityId] = useState("");
-  const [message, setMessage] = useState("");
 
 
-  
+  const router = useRouter();
   const host = process.env.BE;
   useEffect(() => {
     if (!token) return;
@@ -22,7 +21,8 @@ const ReviewWithToken = () => {
           `${host}/university/${token}`
         );
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+
+          router.push("/");
         }
         const data = await response.json();
 
@@ -32,6 +32,7 @@ const ReviewWithToken = () => {
         setUniversityId(data.university.university_id);
       } catch (error: any) {
         console.log(error);
+
       }
     };
 
@@ -53,18 +54,15 @@ const ReviewWithToken = () => {
       });
 
       const data = await response.json();
-      if (response.ok) {
-        setMessage("Review submitted successfully!");
-      } else {
-        setMessage(`Error: ${data.error}`);
-      }
+      console.log(data)
+    
     } catch (error) {
-      setMessage("Error: Failed to submit review");
+      console.log(error)
     }
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4"> 
       <h1 className="text-xl font-bold mb-4">Submit Review: {universityName}</h1>
       <h4 className="text-xl font-bold mb-4">id: {universityId}</h4>
 
@@ -94,7 +92,7 @@ const ReviewWithToken = () => {
       >
         Submit Review
       </button>
-      {message && <p className="mt-4">{message}</p>}
+       
     </div>
   );
 };

@@ -12,7 +12,6 @@ const UniversitiesPage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  
   const host = process.env.BE;
   useEffect(() => {
     const fetchUniversities = async () => {
@@ -25,6 +24,7 @@ const UniversitiesPage: React.FC = () => {
         setUniversities(data);
       } catch (error: any) {
         setError(error.message);
+        
       } finally {
         setLoading(false);
       }
@@ -38,28 +38,31 @@ const UniversitiesPage: React.FC = () => {
 
   return (
     <div className="mt-10  ">
-      <h1>Universities</h1>
+      <h1 className="text-3xl font-bold text-center mb-6">
+        University's Review
+      </h1>
       {universities.length === 0 ? (
-        <p>No universities found.</p>
+        <p className="text-center text-gray-500">No universities found.</p>
       ) : (
-       
-          <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-
-       
+        <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-24 overflow-y-scroll ">
           {universities.map((university) => (
             <div
               key={university._id}
-              className=" bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105"
+              className="bg-white p-6 rounded-lg shadow-md border border-gray-300 transition-transform transform hover:scale-105 hover:shadow-lg"
             >
-              <a href={`/reviews/${university.university_id}`}>
-                <h2 className="text-xl font-semibold text-gray-800 mb-2">
+              <a
+                href={`/reviews/${university.university_id}`}
+                className="block"
+              >
+                <h2 className="text-2xl font-semibold text-gray-800 mb-2">
                   {university.university_name}
                 </h2>
-                <p className="text-gray-600">ID: {university.university_id}</p>
+                <p className="text-gray-500 text-sm">
+                  ID: {university.university_id}
+                </p>
               </a>
             </div>
           ))}
-     
         </div>
       )}
     </div>
