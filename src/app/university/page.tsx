@@ -1,44 +1,22 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { IUniversity } from "../page";
 
-interface IUniversity {
-  _id: string;
-  university_id: string;
-  university_name: string;
+ 
+interface Props {
+  universities: IUniversity[] ;
+  loading:boolean
 }
-
-const UniversitiesPage: React.FC = () => {
-  const [universities, setUniversities] = useState<IUniversity[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const host = process.env.BE;
-  useEffect(() => {
-    const fetchUniversities = async () => {
-      try {
-        const response = await fetch(`${host}/universities`);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setUniversities(data);
-      } catch (error: any) {
-        setError(error.message);
-        
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUniversities();
-  }, []);
+function UniversitiesPage  (props: Props) {
+ 
+  const { universities , loading } = props;
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  // if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="mt-10  ">
-      <h1 className="text-3xl font-bold text-center mb-6">
+      <h1 className="text-white text-3xl font-bold text-center mb-6">
         University's Review
       </h1>
       {universities.length === 0 ? (
